@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 const Navbar = () => {
   return (
     <div className="w-full p-2 fixed top-0 z-[100] bg-transparent flex justify-between">
@@ -18,9 +20,12 @@ const Navbar = () => {
           Contact
         </span>
       </div>
-      <div className="px-4 h-10 flex justify-center text-sm items-center text-white font-bold rounded-full bg-black/20 backdrop-blur-md backdrop-saturate-150 border border-white/20 shadow-sm">
+      <Link
+        to="/login"
+        className="px-4 h-10 flex justify-center text-sm items-center text-white font-bold rounded-full bg-black/20 backdrop-blur-md backdrop-saturate-150  shadow-sm"
+      >
         Login
-      </div>
+      </Link>
     </div>
   );
 };

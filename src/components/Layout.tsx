@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
-    <div>
+    <div className="space-y-2">
       <Navbar />
       {children}
     </div>
