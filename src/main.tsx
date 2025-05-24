@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import App from "./App";
 import LoginPage from "./components/pages/login";
 import CacheProvider from "./lib/Cache";
+import { AuthProvider } from "./context/authContext";
 
 const router = createBrowserRouter([
   {
@@ -20,8 +21,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <CacheProvider>
-      <RouterProvider router={router} />
-    </CacheProvider>
+    <AuthProvider>
+      <CacheProvider>
+        <RouterProvider router={router} />
+      </CacheProvider>
+    </AuthProvider>
   </StrictMode>
 );

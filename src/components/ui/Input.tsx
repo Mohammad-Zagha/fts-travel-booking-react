@@ -3,7 +3,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
 import { FaEyeSlash, FaRegEye } from "react-icons/fa";
-import { cn } from "../../utils/cn";
+import { cn } from "../../lib/utils";
 
 const inputVariants = cva(
   "flex w-full rounded-[13.8px] ring-1  ring-gray-200/70 bg-transparent px-3 focus:px-4 font-400 transition-all file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground outline-none focus-visible:ring-[1.5px] focus-visible:ring-primary/30 disabled:cursor-not-allowed disabled:opacity-50 invalid:ring-red-500",

@@ -1,0 +1,23 @@
+export type UserType = "user" | "admin";
+export type FeaturedDeal = {
+  hotelId: number;
+  originalRoomPrice: number;
+  discount: number;
+  finalPrice: number;
+  cityName: string;
+  hotelName: string;
+  hotelStarRating: number;
+  title: string;
+  description: string;
+  roomPhotoUrl: string;
+};
+
+export type UserInfo = {
+  user_id: string;
+  given_name: string;
+  family_name: string;
+  userType: UserType;
+  nbf: number;
+  exp: number;
+  iss: string;
+};
