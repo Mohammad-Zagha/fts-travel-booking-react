@@ -4,6 +4,7 @@ import { SmoothScrollHero } from "./components/pages/Home/SmoothScrollHero";
 import Layout from "./components/Layout";
 import { useAuth } from "./context/authContext";
 import FeaturedDeals from "./components/pages/Home/authed/FeaturedDeals";
+import RecentlyVisted from "./components/pages/Home/authed/RecentlyVisted";
 
 function App() {
   const { isAuthenticated } = useAuth();
@@ -77,6 +78,7 @@ function App() {
       {isAuthenticated && (
         <div className="p-8">
           <FeaturedDeals />
+          <RecentlyVisted />
         </div>
       )}
     </Layout>

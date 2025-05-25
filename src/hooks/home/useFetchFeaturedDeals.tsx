@@ -2,9 +2,9 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { axiosInstance } from "../../lib/Axios";
 import type { FeaturedDeal } from "../../types";
 
-export function useGetFeaturedDeals() {
+export function useFetchFeaturedDeals() {
   return useQuery({
-    queryKey: [],
+    queryKey: ["featured-deals"],
     queryFn: async () => {
       try {
         const { data } = await axiosInstance.get<FeaturedDeal[]>(

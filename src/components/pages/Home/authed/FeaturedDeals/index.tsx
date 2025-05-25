@@ -1,9 +1,9 @@
 import { Link } from "react-router";
-import { useGetFeaturedDeals } from "../../../../../hooks/deals/useFetchFeaturedDeals";
+import { useFetchFeaturedDeals } from "../../../../../hooks/home/useFetchFeaturedDeals";
 import { FeaturedDealCard } from "./FeaturedDealCard";
 
 const FeaturedDeals = () => {
-  const { data } = useGetFeaturedDeals();
+  const { data } = useFetchFeaturedDeals();
 
   if (!data?.length) return null;
 

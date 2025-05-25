@@ -21,3 +21,13 @@ export type UserInfo = {
   exp: number;
   iss: string;
 };
+export type RecentlyVisited = {
+  hotelId: number;
+  hotelName: string;
+  starRating: number;
+  visitDate: string;
+  cityName: string;
+  thumbnailUrl: string;
+  priceLowerBound: number;
+  priceUpperBound: number;
+};
