@@ -1,6 +1,6 @@
-import { Link } from "react-router";
 import { useFetchFeaturedDeals } from "../../../../../hooks/home/useFetchFeaturedDeals";
 import { FeaturedDealCard } from "./FeaturedDealCard";
+import Carousel from "../../../../ui/Carousel";
 
 const FeaturedDeals = () => {
   const { data } = useFetchFeaturedDeals();
@@ -8,24 +8,23 @@ const FeaturedDeals = () => {
   if (!data?.length) return null;
 
   return (
-    <section className="px-4 py-6 ">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-4xl font-semibold text-primary">Featured Deals</h2>
-        <Link to="/deals/featured" className=" hover:underline text-sm">
-          View More
-        </Link>
+    <section className="px-4 py-8 md:px-10 lg:px-16">
+      <div className="mb-8">
+        <h2 className="text-3xl font-bold text-primary mb-2">Featured Deals</h2>
+        <p className="text-gray-600">Hotels with the best deals</p>
       </div>
 
-      <div className="flex gap-4 overflow-x-scroll overflow-y-hidden bg-white  scroll-smooth scrollbar-hide py-3">
+      <Carousel
+        showArrows={true}
+        showDots={true}
+        autoPlay={true}
+        autoPlayInterval={6000}
+        itemsPerView={{ mobile: 1, tablet: 2, desktop: 3 }}
+      >
         {data.map((deal) => (
-          <div
-            key={deal.hotelId}
-            className="snap-start shrink-0 w-full max-w-2xl"
-          >
-            <FeaturedDealCard deal={deal} />
-          </div>
+          <FeaturedDealCard key={deal.hotelId} deal={deal} />
         ))}
-      </div>
+      </Carousel>
     </section>
   );
 };

@@ -8,21 +8,21 @@ export const FeaturedDealCard = ({ deal }: { deal: FeaturedDeal }) => {
   );
 
   return (
-    <div className="group relative w-full max-w-2xl mx-auto rounded-3xl overflow-hidden transform transition-all duration-700 hover:scale-[1.02] cursor-pointer h-[32rem] sm:h-[36rem] md:h-[30rem] lg:h-[26rem] xl:h-[24rem]">
+    <div className=" relative w-full max-w-2xl mx-auto rounded-3xl overflow-hidden transform transition-all duration-700  cursor-pointer h-[32rem] sm:h-[36rem] md:h-[30rem] lg:h-[26rem] xl:h-[24rem]">
       <div className="absolute inset-0">
         <Avatar className="w-full h-full rounded-none">
           <AvatarImage
             src={deal.roomPhotoUrl}
             alt={deal.hotelName}
-            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+            className="w-full h-full object-cover transition-transform duration-1000 "
           />
           <AvatarFallback className="w-full h-full object-cover rounded-none" />
         </Avatar>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/60 transition-opacity duration-500 group-hover:from-black/60 group-hover:via-black/30 group-hover:to-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/60 transition-opacity duration-500 " />
       </div>
 
       <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10">
-        <div className="bg-red-500 text-white w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+        <div className="bg-red-500 text-white w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center transition-all duration-300 ">
           <div className="text-center">
             <Tag className="w-4 h-4 mx-auto mb-1" />
             <div className="text-xs font-bold leading-none">
@@ -51,7 +51,7 @@ export const FeaturedDealCard = ({ deal }: { deal: FeaturedDeal }) => {
             </div>
           </div>
 
-          <h2 className="text-xl sm:text-2xl font-bold leading-tight group-hover:text-blue-300 transition-colors duration-300">
+          <h2 className="text-xl sm:text-2xl font-bold leading-tight  transition-colors duration-300">
             {deal.title}
           </h2>
 
@@ -81,7 +81,7 @@ export const FeaturedDealCard = ({ deal }: { deal: FeaturedDeal }) => {
               <div className="text-white/80 text-xs sm:text-sm">per night</div>
             </div>
 
-            <button className="bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-2xl font-bold text-base sm:text-lg shadow-xl hover:bg-blue-50 transform hover:scale-105 transition-all duration-300 hover:shadow-2xl">
+            <button className="bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-2xl font-bold text-base sm:text-lg shadow-xl  transition-all duration-300">
               Book Now
             </button>
           </div>
@@ -92,7 +92,7 @@ export const FeaturedDealCard = ({ deal }: { deal: FeaturedDeal }) => {
         </div>
       </div>
 
-      <div className="absolute inset-0 rounded-3xl border-2 border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      <div className="absolute inset-0 rounded-3xl border-2 border-white/20 opacity-0  transition-opacity duration-500 pointer-events-none" />
     </div>
   );
 };

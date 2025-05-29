@@ -31,3 +31,10 @@ export type RecentlyVisited = {
   priceLowerBound: number;
   priceUpperBound: number;
 };
+export type Destination = {
+  cityId: number;
+  cityName: string;
+  countryName: string;
+  description: string;
+  thumbnailUrl: string;
+};

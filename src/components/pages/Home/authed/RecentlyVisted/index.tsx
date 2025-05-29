@@ -9,7 +9,7 @@ const RecentlyVisited = () => {
   return (
     <section className="px-4 py-8 md:px-10 lg:px-16">
       <div className="mb-8">
-        <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent mb-2">
+        <h2 className="text-3xl font-bold text-primary mb-2">
           Recently Visited
         </h2>
         <p className="text-gray-600">Hotels you've explored recently</p>

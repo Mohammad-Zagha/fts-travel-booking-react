@@ -37,7 +37,7 @@ const RecentlyVistedCard = ({ hotel }: { hotel: RecentlyVisited }) => {
 
       <div className="p-5 space-y-3">
         <div>
-          <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 line-clamp-1">
+          <h3 className="text-lg font-bold text-gray-900 group-hover:text-primary transition-colors duration-300 line-clamp-1">
             {hotel.hotelName}
           </h3>
 
@@ -73,7 +73,7 @@ const RecentlyVistedCard = ({ hotel }: { hotel: RecentlyVisited }) => {
         </div>
       </div>
 
-      <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-blue-200 transition-colors duration-300 pointer-events-none" />
+      <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-secondary transition-colors duration-300 pointer-events-none" />
     </div>
   );
 };

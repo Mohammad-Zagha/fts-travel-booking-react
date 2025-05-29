@@ -7,8 +7,14 @@ import {
 } from "framer-motion";
 import { FiMapPin } from "react-icons/fi";
 import { useRef } from "react";
+import { useFetchDestinations } from "../../../hooks/home/useFetchDestinations";
+import { Avatar, AvatarFallback, AvatarImage } from "../../ui/Avatar";
+import type { Destination } from "../../../types";
+import type { ScheduleItemProps } from "../../../interfaces";
 
 export const SmoothScrollHero = () => {
+  const { data: destinations } = useFetchDestinations();
+
   return (
     <div className="bg-zinc-900">
       <ReactLenis
@@ -18,7 +24,7 @@ export const SmoothScrollHero = () => {
         }}
       >
         <Hero />
-        <Schedule />
+        <Schedule destinations={destinations || []} />
       </ReactLenis>
     </div>
   );
@@ -155,7 +161,7 @@ const ParallaxImg = ({
   );
 };
 
-const Schedule = () => {
+const Schedule = ({ destinations }: { destinations: Destination[] }) => {
   return (
     <section
       id="destinations"
@@ -164,49 +170,53 @@ const Schedule = () => {
       <motion.h1
         initial={{ y: 48, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true }}
         transition={{ ease: "easeInOut", duration: 0.75 }}
         className="mb-20 text-4xl font-black uppercase text-primary"
       >
         Top Destinations
       </motion.h1>
-      <ScheduleItem title="Mansora" date="Dec 9th" location="Egypt" />
-      <ScheduleItem title="Siesta Beach" date="Dec 20th" location="Florida" />
-      <ScheduleItem title="Khalifa Tower" date="Jan 13th" location="Dubai" />
-      <ScheduleItem title="Jeddah" date="Feb 22nd" location="Saudi Arabia" />
-      <ScheduleItem
-        title="Los Palos Hirrmanos"
-        date="Mar 1st"
-        location="Texas"
-      />
-      <ScheduleItem title=" central park" date="Mar 8th" location="London" />
-      <ScheduleItem title=" Cape Town" date="Apr 8th" location="Cape Town" />
+
+      {destinations?.map((destination) => (
+        <ScheduleItem
+          key={destination.cityId}
+          title={destination.cityName}
+          location={destination.countryName}
+          thumbnailUrl={destination.thumbnailUrl}
+        />
+      ))}
     </section>
   );
 };
 
-const ScheduleItem = ({
+export const ScheduleItem = ({
   title,
   date,
   location,
-}: {
-  title: string;
-  date: string;
-  location: string;
-}) => {
+  thumbnailUrl,
+}: ScheduleItemProps) => {
   return (
     <motion.div
       initial={{ y: 48, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
       transition={{ ease: "easeInOut", duration: 0.75 }}
-      className="mb-9 flex items-center justify-between border-b border-zinc-800 px-3 pb-9"
+      className="mb-6 flex items-center justify-between gap-4 rounded-xl border border-zinc-800 bg-zinc-900/30 px-4 py-5 backdrop-blur"
     >
-      <div>
-        <p className="mb-1.5 text-xl text-white">{title}</p>
-        <p className="text-sm uppercase text-secondary">{date}</p>
+      <div className="flex items-center gap-4">
+        <Avatar>
+          <AvatarImage src={thumbnailUrl} alt={title} loading="lazy" />
+          <AvatarFallback>{title[0]}</AvatarFallback>
+        </Avatar>
+        <div>
+          <p className="text-lg font-semibold text-white">{title}</p>
+          {date && <p className="text-xs uppercase text-secondary">{date}</p>}
+        </div>
       </div>
-      <div className="flex items-center gap-1.5 text-end text-sm uppercase text-secondary">
+
+      <div className="flex items-center gap-1.5 text-end text-xs uppercase text-secondary">
         <p>{location}</p>
-        <FiMapPin />
+        <FiMapPin className="text-base" />
       </div>
     </motion.div>
   );
