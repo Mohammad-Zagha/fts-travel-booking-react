@@ -1,4 +1,4 @@
-import { ReactLenis } from "Lenis/react";
+import { ReactLenis } from "lenis/react";
 import {
   motion,
   useMotionTemplate,
