@@ -7,10 +7,10 @@ import {
 } from "framer-motion";
 import { FiMapPin } from "react-icons/fi";
 import { useRef } from "react";
-import { useFetchDestinations } from "../../../hooks/home/useFetchDestinations";
-import { Avatar, AvatarFallback, AvatarImage } from "../../ui/Avatar";
-import type { Destination } from "../../../types";
-import type { ScheduleItemProps } from "../../../interfaces";
+import { useFetchDestinations } from "../../../../../hooks/home/useFetchDestinations";
+import type { Destination } from "../../../../../types";
+import type { ScheduleItemProps } from "../../../../../interfaces";
+import { Avatar, AvatarFallback, AvatarImage } from "../../../../ui/Avatar";
 
 export const SmoothScrollHero = () => {
   const { data: destinations } = useFetchDestinations();

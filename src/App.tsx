@@ -1,11 +1,11 @@
 import { BlurIn } from "./components/animation/blur_in";
 import Hero from "./components/pages/Home/Hero";
-import { SmoothScrollHero } from "./components/pages/Home/SmoothScrollHero";
 import Layout from "./components/Layout";
 import { useAuth } from "./context/authContext";
 import FeaturedDeals from "./components/pages/Home/authed/FeaturedDeals";
 import RecentlyVisted from "./components/pages/Home/authed/RecentlyVisted";
 import TrendingDestinations from "./components/pages/Home/authed/TrendingDestinations";
+import { SmoothScrollHero } from "./components/pages/Home/unAuthed/Hero/SmoothScrollHero";
 
 function App() {
   const { isAuthenticated } = useAuth();
