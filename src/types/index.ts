@@ -1,3 +1,4 @@
+
 export type UserType = "user" | "admin";
 export type FeaturedDeal = {
   hotelId: number;
@@ -38,3 +39,4 @@ export type Destination = {
   description: string;
   thumbnailUrl: string;
 };
+

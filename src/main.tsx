@@ -6,6 +6,7 @@ import App from "./App";
 import LoginPage from "./components/pages/login";
 import CacheProvider from "./lib/Cache";
 import { AuthProvider } from "./context/authContext";
+import SearchResults from "./components/pages/SearchResults";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage />,
+  },
+  {
+    path: "/search-results",
+    element: <SearchResults />,
   },
 ]);
 
