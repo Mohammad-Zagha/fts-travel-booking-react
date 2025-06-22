@@ -1,11 +1,12 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { axiosInstance } from "../../lib/Axios";
 import type { SearchFormValues } from "../../interfaces";
+import type { HotelSearchPreview } from "../../types/hotel_types";
 
 export function useFetchFilterdHotels({
   city,
-  chickInDate,
-  chickOutDate,
+  checkInDate,
+  checkOutDate,
   adults,
   children,
   numberOfRooms,
@@ -14,16 +15,16 @@ export function useFetchFilterdHotels({
     queryKey: [
       "filtered-hotels",
       city,
-      chickInDate,
-      chickOutDate,
+      checkInDate,
+      checkOutDate,
       adults,
       children,
       numberOfRooms,
     ],
     queryFn: async () => {
       try {
-        const { data } = await axiosInstance.get<any>(
-          `home/search?city=${city}&chickInDate=${chickInDate}&chickOutDate=${chickOutDate}&adults=${adults}&children=${children}&numberOfRooms=${numberOfRooms}`
+        const { data } = await axiosInstance.get<HotelSearchPreview[]>(
+          `home/search?city=${city}&checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&adults=${adults}&children=${children}&numberOfRooms=${numberOfRooms}`
         );
         return data;
       } catch (error) {

@@ -7,8 +7,8 @@ export interface ScheduleItemProps {
 
 export interface SearchFormValues {
   city: string;
-  chickInDate: string;
-  chickOutDate: string;
+  checkInDate: string;
+  checkOutDate: string;
   adults: number;
   children: number;
   numberOfRooms: number;

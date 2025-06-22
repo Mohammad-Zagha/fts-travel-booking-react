@@ -20,7 +20,6 @@ export function formatDate(
     return `${year}-${month}-${day}`;
   }
 
-  // Default "short" format
   return new Intl.DateTimeFormat("en-US", {
     weekday: "short",
     month: "short",

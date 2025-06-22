@@ -1,6 +1,5 @@
 import { BlurIn } from "./components/animation/blur_in";
 import Hero from "./components/pages/Home/Hero";
-import Layout from "./components/Layout";
 import { useAuth } from "./context/authContext";
 import FeaturedDeals from "./components/pages/Home/authed/FeaturedDeals";
 import RecentlyVisted from "./components/pages/Home/authed/RecentlyVisted";
@@ -11,7 +10,7 @@ function App() {
   const { isAuthenticated } = useAuth();
 
   return (
-    <Layout>
+    <>
       <Hero />
       {!isAuthenticated && (
         <>
@@ -85,7 +84,7 @@ function App() {
           <TrendingDestinations />
         </>
       )}
-    </Layout>
+    </>
   );
 }
 

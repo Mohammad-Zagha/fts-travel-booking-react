@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { NavLink } from "react-router";
 import { useAuth } from "../context/authContext";
 import { LogOut } from "lucide-react";
 
@@ -7,11 +7,14 @@ const Navbar = () => {
 
   return (
     <div className="w-full p-4 fixed top-0 z-[100] bg-transparent flex justify-between items-center">
-      <span className="text-primary text-2xl font-bold text-shadow-sm">
+      <NavLink
+        to="/"
+        className="text-primary text-2xl font-bold text-shadow-sm"
+      >
         Traverce
-      </span>
+      </NavLink>
 
-      <div className="flex gap-10 px-8 py-3 rounded-full bg-black/20 backdrop-blur-md backdrop-saturate-150 border border-white/20 shadow-sm">
+      <div className="max-sm:hidden flex gap-10 px-8 py-3 rounded-full bg-black/20 backdrop-blur-md backdrop-saturate-150 border border-white/20 shadow-sm">
         {["Home", "Destinations", "Review", "Contact"].map((item) => (
           <span
             key={item}
@@ -23,12 +26,14 @@ const Navbar = () => {
       </div>
 
       {!isAuthenticated ? (
-        <Link
-          to="/login"
+        <NavLink
+          to={{
+            pathname: "/login",
+          }}
           className="px-4 h-10 flex justify-center text-sm items-center text-white font-bold rounded-full bg-black/20 backdrop-blur-md backdrop-saturate-150 shadow-sm"
         >
           Login
-        </Link>
+        </NavLink>
       ) : (
         <button
           onClick={logout}

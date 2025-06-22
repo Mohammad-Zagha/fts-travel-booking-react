@@ -7,37 +7,37 @@ import { formatDate } from "../../lib/utils";
 import { FaCalendar, FaSearch } from "react-icons/fa";
 import { DatePicker } from "../ui/DatePricker";
 import { SearchSchema } from "../../lib/zod/Schemas";
-import { useNavigate } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import type { SearchFormValues } from "../../types/inferdTypes";
 import { CounterControl } from "./CounterControll";
 
-const buildSearchParams = (values: SearchFormValues) => {
-  const params = new URLSearchParams({
-    search: values.search,
-    from: formatDate(values.from, "YYYY-MM-DD"),
-    to: formatDate(values.to, "YYYY-MM-DD"),
-    adults: values.adults.toString(),
-    children: values.children.toString(),
-    rooms: values.rooms.toString(),
-  });
-
-  return `/search-results?${params.toString()}`;
+type SearchBarProps = {
+  isResultsPage?: boolean;
 };
 
-const SearchBar = () => {
+const SearchBar = ({ isResultsPage = false }: SearchBarProps) => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   const initialValues: SearchFormValues = {
-    search: "",
-    from: formatDate(new Date(), "YYYY-MM-DD"),
-    to: formatDate(new Date(), "YYYY-MM-DD"),
-    adults: 1,
-    children: 0,
-    rooms: 1,
+    search: searchParams.get("search") || "",
+    from: searchParams.get("from") || formatDate(new Date(), "YYYY-MM-DD"),
+    to: searchParams.get("to") || formatDate(new Date(), "YYYY-MM-DD"),
+    adults: parseInt(searchParams.get("adults") || "1", 10),
+    children: parseInt(searchParams.get("children") || "0", 10),
+    rooms: parseInt(searchParams.get("rooms") || "1", 10),
   };
 
   return (
-    <div className="absolute z-50 top-[45%] left-1/2 transform -translate-x-1/2 w-[90%] sm:w-[80%] lg:w-[60%] bg-white rounded-2xl shadow-xl p-6">
+    <div
+      className={`z-50 w-[100%] lg:w-[65%] bg-white rounded-2xl shadow-xl p-6
+        ${
+          isResultsPage
+            ? "relative mx-auto mt-4"
+            : "absolute top-[45%] left-1/2 transform -translate-x-1/2"
+        }
+      `}
+    >
       <Formik
         initialValues={initialValues}
         validationSchema={toFormikValidationSchema(SearchSchema)}
@@ -45,21 +45,22 @@ const SearchBar = () => {
       >
         {({ values, setFieldValue }) => (
           <Form>
-            <div className="flex items-center gap-4">
+            <div className="flex flex-col md:flex-row items-center gap-4 flex-wrap w-full">
+              {/* Search Input */}
               <Field
                 name="search"
                 as={Input}
                 placeholder="Search for Hotels"
-                className="w-full bg-gray-100 rounded-2xl py-3 px-5 text-lg"
+                className="bg-gray-100 rounded-2xl py-3 px-5 text-lg w-full md:w-auto flex-1"
               />
 
-              {/* Guest & Room Selector */}
+              {/* Guests & Rooms Popover */}
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
                     variant="outline"
                     size="md"
-                    className="py-4.5 min-w-[200px] hover:bg-gray-50"
+                    className="py-4.5 flex-1 hover:bg-gray-50 w-full md:w-auto justify-center"
                   >
                     <span className="font-semibold">
                       {values.adults} Adults, {values.children} Children,{" "}
@@ -124,13 +125,13 @@ const SearchBar = () => {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="justify-between border h-fit py-2 text-sm min-w-[180px] hover:bg-gray-50"
+                    className="justify-between border  h-fit py-2 text-sm min-w-0 w-full md:w-auto hover:bg-gray-50"
                   >
-                    <span className="text-left font-medium">
+                    <span className="text-left font-medium truncate">
                       {formatDate(values.from, "short")} -{" "}
                       {formatDate(values.to, "short")}
                     </span>
-                    <FaCalendar className="size-4 ml-2 text-muted-foreground" />
+                    <FaCalendar className="size-4 ml-2 text-muted-foreground shrink-0" />
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="bg-white" side="bottom">
@@ -158,7 +159,11 @@ const SearchBar = () => {
               </Popover>
 
               {/* Search Button */}
-              <Button type="submit" size="lg" className="py-4.5">
+              <Button
+                type="submit"
+                size="lg"
+                className="py-4.5 w-full flex-1 md:w-auto flex justify-center "
+              >
                 <FaSearch className="size-4 mr-2" />
                 Search
               </Button>
@@ -171,3 +176,16 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
+
+const buildSearchParams = (values: SearchFormValues) => {
+  const params = new URLSearchParams({
+    search: values.search ?? "",
+    from: formatDate(values.from, "YYYY-MM-DD"),
+    to: formatDate(values.to, "YYYY-MM-DD"),
+    adults: values.adults.toString(),
+    children: values.children.toString(),
+    rooms: values.rooms.toString(),
+  });
+
+  return `/search-results?${params.toString()}`;
+};

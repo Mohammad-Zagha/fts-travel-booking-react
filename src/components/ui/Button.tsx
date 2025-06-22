@@ -13,7 +13,7 @@ const buttonVariants = cva(
         outline: "border border-primary text-primary hover:bg-primary/10",
         ghost:
           "bg-muted hover:bg-muted/80 text-gray-900 hover:text-gray-900/90",
-        link: "text-primary underline-offset-4 hover:underline",
+        link: "text-primary underline-offset-4 hover:underline hover:decoration-primary",
       },
       size: {
         xs: "size-[22px] text-xs rounded-full [&_svg]:size-[13px]",
