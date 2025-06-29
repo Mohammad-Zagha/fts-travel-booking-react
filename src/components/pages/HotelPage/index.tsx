@@ -11,16 +11,8 @@ import HotelAmenities from "./HotelAmenities";
 export const HotelPage = () => {
   const { id } = useParams();
   console.log(id);
-  const {
-    hotel,
-    isHotelLoading,
-    hotelGallery,
-    isGalleryLoading,
-    hotelRoomsAvailability,
-    isRoomsLoading,
-    hotelReviews,
-    isReviewsLoading,
-  } = useHotelFullInfo(id!);
+  const { hotel, hotelGallery, hotelRoomsAvailability, hotelReviews } =
+    useHotelFullInfo(id!);
 
   if (!hotel) {
     return (
