@@ -1,6 +1,7 @@
 import { NavLink } from "react-router";
 import { useAuth } from "../context/authContext";
 import { LogOut } from "lucide-react";
+import CartSheet from "./ui/CartSheet";
 
 const Navbar = () => {
   const { isAuthenticated, logout, userInfo } = useAuth();
@@ -35,13 +36,16 @@ const Navbar = () => {
           Login
         </NavLink>
       ) : (
-        <button
-          onClick={logout}
-          className="flex items-center gap-2 px-4 h-10 text-sm font-semibold text-white rounded-full bg-black/20 backdrop-blur-md backdrop-saturate-150 shadow-sm hover:bg-black/30 transition-colors"
-        >
-          {userInfo?.given_name}
-          <LogOut className="w-5 h-5" />
-        </button>
+        <div className="flex items-center gap-3">
+          <CartSheet />
+          <button
+            onClick={logout}
+            className="flex items-center gap-2 px-4 h-10 text-sm font-semibold text-white rounded-full bg-black/20 backdrop-blur-md backdrop-saturate-150 shadow-sm hover:bg-black/30 transition-colors"
+          >
+            {userInfo?.given_name}
+            <LogOut className="w-5 h-5" />
+          </button>
+        </div>
       )}
     </div>
   );

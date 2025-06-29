@@ -6,7 +6,7 @@ import { Button } from "../ui/Button";
 import { formatDate } from "../../lib/utils";
 import { FaCalendar, FaSearch } from "react-icons/fa";
 import { DatePicker } from "../ui/DatePricker";
-import { SearchSchema } from "../../lib/zod/Schemas";
+import { searchSchema } from "../../lib/zod/Schemas";
 import { useNavigate, useSearchParams } from "react-router";
 import type { SearchFormValues } from "../../types/inferdTypes";
 import { CounterControl } from "./CounterControll";
@@ -40,7 +40,7 @@ const SearchBar = ({ isResultsPage = false }: SearchBarProps) => {
     >
       <Formik
         initialValues={initialValues}
-        validationSchema={toFormikValidationSchema(SearchSchema)}
+        validationSchema={toFormikValidationSchema(searchSchema)}
         onSubmit={(values) => navigate(buildSearchParams(values))}
       >
         {({ values, setFieldValue }) => (

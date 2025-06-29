@@ -3,6 +3,7 @@ import App from "./App";
 import LoginPage from "./components/pages/login";
 import SearchResults from "./components/pages/SearchResults";
 import { HotelPage } from "./components/pages/HotelPage";
+import CheckoutPage from "./components/pages/checkout";
 
 const AppRoutes = () => {
   return (
@@ -11,6 +12,7 @@ const AppRoutes = () => {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/search-results" element={<SearchResults />} />
       <Route path="/hotel/:id" element={<HotelPage />} />
+      <Route path="/checkout" element={<CheckoutPage />} />
     </Routes>
   );
 };

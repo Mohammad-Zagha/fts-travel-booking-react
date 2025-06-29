@@ -5,7 +5,7 @@ import { CheckCircle, XCircle, Users, Baby, BedDouble } from "lucide-react";
 import RoomAmenitiesList from "./RoomAmenitiesList"; // Ensure correct relative path
 import type { RoomAvailability } from "../../../types/hotel_types";
 import { Avatar, AvatarImage } from "../../ui/Avatar";
-import { Button } from "../../ui/Button";
+import BookSheet from "./BookSheet";
 
 type RoomCardProps = {
   room: RoomAvailability;
@@ -98,16 +98,8 @@ const RoomCard: React.FC<RoomCardProps> = ({ room }) => {
               <BedDouble className="w-4 h-4 text-gray-400" />
               <span className="text-sm text-gray-600">{room.roomType}</span>
             </div>
-            <Button
-              disabled={!room.availability}
-              className={`px-6 py-2 text-sm font-medium rounded-lg transition-colors ${
-                room.availability
-                  ? "bg-primary text-white hover:bg-primary/90"
-                  : "bg-gray-300 text-gray-500 cursor-not-allowed"
-              }`}
-            >
-              {room.availability ? "Book Now" : "Unavailable"}
-            </Button>
+
+            <BookSheet room={room} />
           </div>
         </div>
       </div>
