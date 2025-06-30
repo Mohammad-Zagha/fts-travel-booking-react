@@ -1,5 +1,5 @@
 
-export type UserType = "user" | "admin";
+export type UserType = "User" | "Admin";
 export type FeaturedDeal = {
   hotelId: number;
   originalRoomPrice: number;

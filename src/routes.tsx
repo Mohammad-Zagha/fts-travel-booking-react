@@ -4,17 +4,40 @@ import LoginPage from "./components/pages/login";
 import SearchResults from "./components/pages/SearchResults";
 import { HotelPage } from "./components/pages/HotelPage";
 import CheckoutPage from "./components/pages/checkout";
+import PublicRoute from "./components/publicRoutes";
+import ProtectedLayout from "./context/protectedLayout";
+import HomeRoute from "./components/homeRoute";
+import AdminDashboard from "./components/pages/admin";
 
-const AppRoutes = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="/login" element={<LoginPage />} />
+const AppRoutes = () => (
+  <Routes>
+    <Route
+      path="/login"
+      element={
+        <PublicRoute>
+          <LoginPage />
+        </PublicRoute>
+      }
+    />
+
+    <Route
+      path="/"
+      element={
+        <HomeRoute>
+          <App />
+        </HomeRoute>
+      }
+    />
+    {/* Protected routes */}
+    <Route element={<ProtectedLayout requiredRole="User" />}>
       <Route path="/search-results" element={<SearchResults />} />
       <Route path="/hotel/:id" element={<HotelPage />} />
       <Route path="/checkout" element={<CheckoutPage />} />
-    </Routes>
-  );
-};
+    </Route>
+    <Route element={<ProtectedLayout requiredRole="Admin" />}>
+      <Route path="/admin" element={<AdminDashboard />} />
+    </Route>
+  </Routes>
+);
 
 export default AppRoutes;
