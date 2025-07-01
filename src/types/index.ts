@@ -1,3 +1,4 @@
+import type { Amenity } from "./hotel_types";
 
 export type UserType = "User" | "Admin";
 export type FeaturedDeal = {
@@ -40,3 +41,19 @@ export type Destination = {
   thumbnailUrl: string;
 };
 
+export type City = {
+  id: number;
+  name: string;
+  description: string;
+};
+export type Room = {
+  roomId: number;
+  roomNumber: number;
+  roomPhotoUrl: string;
+  roomType: string;
+  capacityOfAdults: number;
+  capacityOfChildren: number;
+  amenities: Amenity[];
+  price: number;
+  availability: boolean;
+};
