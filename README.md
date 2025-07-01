@@ -1,54 +1,65 @@
-# React + TypeScript + Vite
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/62269745/174906068-aad23112-20fe-4ec8-877f-3ee1d9ec0a69.png#gh-dark-mode-only" width="40%">
+</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Traverce 🌍✈️🏨
 
-Currently, two official plugins are available:
+**Your seamless travel booking companion.**  
+Traverce empowers you to explore, search, and book hotels effortlessly with a modern and intuitive interface, ensuring a smooth experience for your travel planning.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Technologies
 
-## Expanding the ESLint configuration
+This project leverages powerful modern technologies:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **[React](https://reactjs.org/)**: Declarative UI library.
+- **[React DOM](https://reactjs.org/docs/react-dom.html)**: Renders React components to the DOM.
+- **[React Router](https://reactrouter.com/)**: Declarative routing for React apps.
+- **[Tailwind CSS](https://tailwindcss.com/)**: Utility-first CSS framework for rapid UI development.
+- **[Radix UI](https://www.radix-ui.com/)**: Primitives for building accessible React components (`@radix-ui/react-avatar`, `@radix-ui/react-dialog`, `@radix-ui/react-popover`).
+- **[Lucide React](https://lucide.dev/docs/lucide-react)**: Icon library for consistent design.
+- **[React Query](https://tanstack.com/query/latest)**: Powerful asynchronous state management.
+- **[Axios](https://axios-http.com/)**: Promise-based HTTP client.
+- **[Zod](https://zod.dev/)**: TypeScript-first schema validation.
+- **[Formik](https://formik.org/)**: Form management in React.
+- **[zod-formik-adapter](https://github.com/colinhacks/zod-formik-adapter)**: Integrate Zod with Formik.
+- **[React Day Picker](https://react-day-picker.js.org/)**: Date picker for React.
+- **[Date-fns](https://date-fns.org/)**: Modern date utility library.
+- **[clsx](https://www.npmjs.com/package/clsx)**: Conditional className utility.
+- **[class-variance-authority](https://cva.style/)**: Class variance utilities for Tailwind.
+- **[Embla Carousel React](https://www.embla-carousel.com/)**: Carousel component library.
+- **[React Error Boundary](https://www.npmjs.com/package/react-error-boundary)**: Error boundaries for React.
+- **[React Icons](https://react-icons.github.io/react-icons/)**: Popular icons as React components.
+- **[Lenis](https://github.com/studio-freight/lenis)**: Smooth scroll library.
+- **[Sonner](https://sonner.emilkowal.ski/)**: Beautiful toast notifications.
+- **[JWT Decode](https://github.com/auth0/jwt-decode)**: Decode JWT tokens.
+- **[js-cookie](https://github.com/js-cookie/js-cookie)**: Lightweight cookies API.
+- **[motion](https://motion.dev/)**: Animation library for React.
+- **[Tailwind Merge](https://github.com/dcastil/tailwind-merge)**: Merges Tailwind classes intelligently.
+- **[Tailwindcss Animate](https://github.com/jamiebuilds/tailwindcss-animate)**: Animation utilities for Tailwind.
+- **[@hookform/resolvers](https://react-hook-form.com/docs/useform/#resolver)**: Integrates resolvers like Zod with React Hook Form.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## ✨ Key Features
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- 🔑 **Authentication system** with secure token handling.
+- 🔍 **Hotel search** with date and location filters.
+- 🏨 **Hotel details view** with images, amenities, and room types.
+- 💳 **Booking checkout flow** integrated with responsive forms.
+- 📅 **Date picker integration** for selecting travel dates.
+- ⚙️ **Admin panel** to manage cities, hotels, and rooms.
+- 🎨 **Beautiful carousels** for hotel galleries and featured listings.
+- 🌐 **Responsive design** for mobile and desktop.
+- 💬 **Toast notifications** for smooth user feedback.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📋 Project Management
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+This project is managed using **[Linear](https://linear.app)** for agile task tracking and sprint planning.
+
+## 💾 Installation
+
+To get this project running locally:
+
+1. **Clone the repository:**
+
+```bash
+git clone https://github.com/Mohammad-Zagha/fts-travel-booking-react.git
 ```
