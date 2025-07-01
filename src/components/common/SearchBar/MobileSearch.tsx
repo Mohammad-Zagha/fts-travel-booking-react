@@ -1,21 +1,20 @@
-import { Formik, Form, Field } from "formik";
-import { toFormikValidationSchema } from "zod-formik-adapter";
-import { Input } from "../ui/Input";
-import { Popover, PopoverContent, PopoverTrigger } from "../shadcn/Popover";
-import { Button } from "../ui/Button";
-import { formatDate } from "../../lib/utils";
+import { useState } from "react";
+import { Sheet, SheetContent, SheetTrigger } from "../../shadcn/Sheet";
 import { FaCalendar, FaSearch } from "react-icons/fa";
-import { DatePicker } from "../ui/DatePricker";
-import { searchSchema } from "../../lib/zod/Schemas";
+import { Field, Form, Formik } from "formik";
+import { buildSearchParams } from "./misc";
+import { toFormikValidationSchema } from "zod-formik-adapter";
+import { searchSchema } from "../../../lib/zod/Schemas";
+import { Input } from "../../ui/Input";
+import { Popover, PopoverContent, PopoverTrigger } from "../../shadcn/Popover";
+import { Button } from "../../ui/Button";
+import { CounterControl } from "../CounterControll";
 import { useNavigate, useSearchParams } from "react-router";
-import type { SearchFormValues } from "../../types/inferdTypes";
-import { CounterControl } from "./CounterControll";
+import { formatDate } from "../../../lib/utils";
+import { DatePicker } from "../../ui/DatePricker";
+import type { SearchFormValues } from "../../../types/inferdTypes";
 
-type SearchBarProps = {
-  isResultsPage?: boolean;
-};
-
-const SearchBar = ({ isResultsPage = false }: SearchBarProps) => {
+const MobileSearch = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
@@ -27,31 +26,41 @@ const SearchBar = ({ isResultsPage = false }: SearchBarProps) => {
     children: parseInt(searchParams.get("children") || "0", 10),
     rooms: parseInt(searchParams.get("rooms") || "1", 10),
   };
-
+  const [sheetOpen, setSheetOpen] = useState(false);
   return (
-    <div
-      className={`z-50 w-[100%] lg:w-[65%] bg-white rounded-2xl shadow-xl p-6
-        ${
-          isResultsPage
-            ? "relative mx-auto mt-4"
-            : "absolute top-[45%] left-1/2 transform -translate-x-1/2"
-        }
-      `}
-    >
-      <Formik
-        initialValues={initialValues}
-        validationSchema={toFormikValidationSchema(searchSchema)}
-        onSubmit={(values) => navigate(buildSearchParams(values))}
+    <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
+      <SheetTrigger asChild>
+        {/* Trigger Button on side */}
+        <button
+          className="fixed top-1/2 right-0 z-50 -translate-y-1/2 rounded-l-full bg-primary p-3 shadow-lg hover:bg-acc transition-colors md:hidden"
+          aria-label="Open Search"
+        >
+          <FaSearch className="text-white w-6 h-6" />
+        </button>
+      </SheetTrigger>
+
+      <SheetContent
+        side="right"
+        className=" max-md:w-fullmax-w-2xl p-6"
+        onInteractOutside={() => setSheetOpen(false)}
       >
-        {({ values, setFieldValue }) => (
-          <Form>
-            <div className="flex flex-col md:flex-row items-center gap-4 flex-wrap w-full">
-              {/* Search Input */}
+        <h2 className="mb-4 text-xl font-semibold">Search Hotels</h2>
+
+        <Formik
+          initialValues={initialValues}
+          validationSchema={toFormikValidationSchema(searchSchema)}
+          onSubmit={(values) => {
+            setSheetOpen(false);
+            navigate(buildSearchParams(values));
+          }}
+        >
+          {({ values, setFieldValue }) => (
+            <Form className="flex flex-col gap-4">
               <Field
                 name="search"
                 as={Input}
                 placeholder="Search for Hotels"
-                className="bg-gray-100 rounded-2xl py-3 px-5 text-lg w-full md:w-auto flex-1"
+                className="bg-gray-100 rounded-2xl py-3 px-5 text-lg w-full"
               />
 
               {/* Guests & Rooms Popover */}
@@ -60,7 +69,7 @@ const SearchBar = ({ isResultsPage = false }: SearchBarProps) => {
                   <Button
                     variant="outline"
                     size="md"
-                    className="py-4.5 flex-1 hover:bg-gray-50 w-full md:w-auto justify-center"
+                    className="py-4.5 w-full hover:bg-gray-50 justify-center"
                   >
                     <span className="font-semibold">
                       {values.adults} Adults, {values.children} Children,{" "}
@@ -125,7 +134,7 @@ const SearchBar = ({ isResultsPage = false }: SearchBarProps) => {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="justify-between border  h-fit py-2 text-sm min-w-0 w-full md:w-auto hover:bg-gray-50"
+                    className="justify-between border  h-fit py-2 text-sm min-w-0 w-full hover:bg-gray-50"
                   >
                     <span className="text-left font-medium truncate">
                       {formatDate(values.from, "short")} -{" "}
@@ -158,34 +167,20 @@ const SearchBar = ({ isResultsPage = false }: SearchBarProps) => {
                 </PopoverContent>
               </Popover>
 
-              {/* Search Button */}
               <Button
                 type="submit"
                 size="lg"
-                className="py-4.5 w-full flex-1 md:w-auto flex justify-center "
+                className="py-4.5 w-full flex justify-center"
               >
                 <FaSearch className="size-4 mr-2" />
                 Search
               </Button>
-            </div>
-          </Form>
-        )}
-      </Formik>
-    </div>
+            </Form>
+          )}
+        </Formik>
+      </SheetContent>
+    </Sheet>
   );
 };
 
-export default SearchBar;
-
-const buildSearchParams = (values: SearchFormValues) => {
-  const params = new URLSearchParams({
-    search: values.search ?? "",
-    from: formatDate(values.from, "YYYY-MM-DD"),
-    to: formatDate(values.to, "YYYY-MM-DD"),
-    adults: values.adults.toString(),
-    children: values.children.toString(),
-    rooms: values.rooms.toString(),
-  });
-
-  return `/search-results?${params.toString()}`;
-};
+export default MobileSearch;

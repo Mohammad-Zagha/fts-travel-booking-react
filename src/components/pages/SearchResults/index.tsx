@@ -7,7 +7,7 @@ import { LoadingSpinner } from "../../common/Loader";
 import { FilterSidebar } from "./FilterSideBar";
 import { HotelGrid } from "./HotelGrid";
 import type { FilterState } from "./animations";
-import SearchBar from "../../common/SearchBar";
+import SearchBar from "../../common/SearchBar/SearchBar";
 
 const SearchResults = () => {
   const query = useQueryParams();

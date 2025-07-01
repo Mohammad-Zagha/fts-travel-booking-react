@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import HeroStats from "./unAuthed/Hero/HeroStatus";
 import { useAuth } from "../../../context/authContext";
-import SearchBar from "../../common/SearchBar";
+import SearchBar from "../../common/SearchBar/SearchBar";
 
 const Hero = () => {
   const { isAuthenticated } = useAuth();

@@ -56,9 +56,7 @@ export const HotelPage = () => {
       <ImageGallery hotelGallery={hotelGallery} hotelName={hotel.hotelName} />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Main Content */}
         <div className="lg:col-span-7 space-y-12">
-          {/* Overview Section */}
           <section className="border-b border-gray-100 pb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
               About this space
